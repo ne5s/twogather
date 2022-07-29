@@ -24,7 +24,7 @@ export class ReviewsService {
     createReviewDto: CreateReviewDto,
     reservationId: number,
     spaceId: number,
-  ) {
+  ): Promise<Review> {
     try {
       const reservation = await this.reservationService.findOne(reservationId);
       const space = reservation.room.space;
@@ -43,7 +43,7 @@ export class ReviewsService {
     }
   }
 
-  async findAll() {
+  async findAll(): Promise<Review[]> {
     return await this.reviewsRepository.find({
       relations: {
         reservation: true,
@@ -56,7 +56,7 @@ export class ReviewsService {
   }
 
   // 내가 쓴 리뷰 목록 조회
-  async findMyReviews(userId: number) {
+  async findMyReviews(userId: number): Promise<Review[]> {
     try {
       const reviews = await this.reviewsRepository.query(
         `SELECT A.id as reviewId, A.createdTime as reviewCreatedTime, A.content, A.reservationId, B.id as reservationId, B.date, 
@@ -71,7 +71,7 @@ export class ReviewsService {
   }
 
   // reviewId로 특정 review 조회
-  async findOne(id: number) {
+  async findOne(id: number): Promise<Review> {
     try {
       const review = await this.reviewsRepository.findOne({
         select: {
@@ -132,7 +132,7 @@ export class ReviewsService {
     userId: number,
     id: number,
     updateReviewDto: UpdateReviewDto,
-  ) {
+  ): Promise<boolean> {
     try {
       const review = await this.reviewsRepository.query(
         `SELECT A.id as reviewId, A.createdTime as reviewCreatedTime, A.content, A.reservationId, B.id as reservationId, B.date, 
@@ -153,7 +153,7 @@ export class ReviewsService {
     }
   }
 
-  async remove(id: number) {
+  async remove(id: number): Promise<void> {
     try {
       const deletedReview = await this.reviewsRepository.delete(id);
       if (!deletedReview.affected) {
@@ -166,7 +166,7 @@ export class ReviewsService {
     }
   }
 
-  async removeMyReview(userId: number, id: number) {
+  async removeMyReview(userId: number, id: number): Promise<void> {
     try {
       const review = await this.reviewsRepository.delete(id);
     } catch (error) {

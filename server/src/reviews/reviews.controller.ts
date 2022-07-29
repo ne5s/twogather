@@ -107,7 +107,7 @@ export class ReviewsController {
       example: reviewResExample.findAll,
     },
   })
-  async findAll() {
+  async findAll(): Promise<any> {
     const rawReviews = await this.reviewsService.findAll();
 
     return {
@@ -162,7 +162,7 @@ export class ReviewsController {
       example: reviewResExample.findOne,
     },
   })
-  async findOne(@Param('id') id: number) {
+  async findOne(@Param('id') id: number): Promise<any> {
     const review = await this.reviewsService.findOne(+id);
     return {
       status: 200,
@@ -184,7 +184,7 @@ export class ReviewsController {
       example: reviewResExample.findOne,
     },
   })
-  async findBySpace(@Param('spaceId') spaceId: number) {
+  async findBySpace(@Param('spaceId') spaceId: number): Promise<any> {
     const reviews = await this.reviewsService.findBySpace(spaceId);
     if (!reviews || reviews === undefined || reviews === null) {
       throw new NotFoundException('리뷰가 없습니다.');
@@ -218,7 +218,7 @@ export class ReviewsController {
     @Param('id') id: number,
     @Body() updateReviewDto: UpdateReviewDto,
     @GetAdminUser() host: User,
-  ) {
+  ): Promise<any> {
     const updatedReview = await this.reviewsService.update(
       +id,
       updateReviewDto,
@@ -255,7 +255,7 @@ export class ReviewsController {
     @GetUser() user: User,
     @Param('id') id: number,
     @Body() updateReviewDto: UpdateReviewDto,
-  ) {
+  ): Promise<any> {
     const review = await this.reviewsService.findOne(id);
     const reservation = review.reservation;
     if (reservation.user.id !== user.id) {
@@ -293,7 +293,10 @@ export class ReviewsController {
     name: 'Authorization',
     description: 'Auth token-> Bearer {token} 이렇게 넣기 ',
   })
-  async removeReview(@Param('id') id: number, @GetAdminUser() host: User) {
+  async removeReview(
+    @Param('id') id: number,
+    @GetAdminUser() host: User,
+  ): Promise<any> {
     await this.reviewsService.remove(+id);
     return {
       status: 201,
@@ -321,7 +324,10 @@ export class ReviewsController {
     name: 'Authorization',
     description: 'Auth token-> Bearer {token} 이렇게 넣기 ',
   })
-  async removeMyReview(@GetUser() user: User, @Param('id') id: number) {
+  async removeMyReview(
+    @GetUser() user: User,
+    @Param('id') id: number,
+  ): Promise<any> {
     const review = await this.reviewsService.findOne(id);
     const reservation = review.reservation;
     if (reservation.user.id !== user.id) {
