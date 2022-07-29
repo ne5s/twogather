@@ -2,8 +2,6 @@ import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { identity } from 'rxjs';
 import { Room } from 'src/rooms/entities/rooms.entity';
-import { RoomsService } from 'src/rooms/rooms.service';
-import { SpacesService } from 'src/spaces/spaces.service';
 import { User } from 'src/users/entities/users.entity';
 import { Repository } from 'typeorm';
 import { CreateReservationDto } from './dto/create-reservation.dto';
@@ -22,7 +20,7 @@ export class ReservationsService {
     createReservationDto: CreateReservationDto,
     user: User,
     room: Room,
-  ) {
+  ): Promise<Reservation> {
     try {
       const newReservation = await this.reservationRepository.create({
         ...createReservationDto,
@@ -37,7 +35,7 @@ export class ReservationsService {
   }
 
   // 전체 예약 목록 조회
-  async findAll(startIndex: number, perPage: number) {
+  async findAll(startIndex: number, perPage: number): Promise<any> {
     try {
       const totalSpace = await this.reservationRepository.find();
       const totalPage = Math.ceil(totalSpace.length / perPage);
@@ -89,7 +87,11 @@ export class ReservationsService {
   }
 
   // 내 예약 조회
-  async findMyReservation(user: User, startIndex: number, perPage: number) {
+  async findMyReservation(
+    user: User,
+    startIndex: number,
+    perPage: number,
+  ): Promise<any> {
     try {
       const totalReservation = await this.reservationRepository.find();
       const totalPage =
@@ -144,7 +146,7 @@ export class ReservationsService {
   }
 
   // 룸으로 예약 목록 조회
-  async findAllByRoom(roomId: number, date: string) {
+  async findAllByRoom(roomId: number, date: string): Promise<any> {
     try {
       let reservations;
       if (!date || date === undefined || date === null) {
@@ -208,7 +210,7 @@ export class ReservationsService {
     startIndex: number,
     perPage: number,
     date: string,
-  ) {
+  ): Promise<any> {
     try {
       const totalReservation = await this.reservationRepository.find({
         where: {
@@ -279,7 +281,7 @@ export class ReservationsService {
     }
   }
 
-  async findOne(id: number) {
+  async findOne(id: number): Promise<Reservation> {
     try {
       const reservation = await this.reservationRepository.findOne({
         select: {
@@ -335,7 +337,10 @@ export class ReservationsService {
     }
   }
 
-  async update(id: number, updateReservationDto: UpdateReservationDto) {
+  async update(
+    id: number,
+    updateReservationDto: UpdateReservationDto,
+  ): Promise<any> {
     try {
       const updateReservation = await this.reservationRepository.update(
         id,
@@ -346,7 +351,7 @@ export class ReservationsService {
     }
   }
 
-  async remove(id: number) {
+  async remove(id: number): Promise<any> {
     try {
       return await this.reservationRepository.delete(id);
     } catch (error) {
