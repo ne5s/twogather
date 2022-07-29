@@ -57,7 +57,7 @@ export class ReservationsController {
     @GetUser() user: User,
     @Body() createReservationDto: CreateReservationDto,
     @Param('roomId') roomId: number,
-  ) {
+  ): Promise<any> {
     const roomInfo = await this.roomsService.findOne(roomId);
     const reservation = await this.reservationsService.create(
       createReservationDto,
@@ -98,7 +98,7 @@ export class ReservationsController {
       '전체 예약 목록 조회(예약 목록 전체보기 페이지), 페이지네이션 가능(localhost:3000/api/reservations?page=1&perPage=5)',
     type: Reservation,
   })
-  async findAll(@Query() query) {
+  async findAll(@Query() query): Promise<any> {
     const { page, perPage } = query;
     const startIndex: number = perPage * (page - 1);
     const spaces = await this.reservationsService.findAll(startIndex, perPage);
@@ -124,7 +124,10 @@ export class ReservationsController {
       '특정 룸의 예약 목록 조회, 페이지네이션 가능(localhost:3000/api/reservations/room/50?page=1&perPage=5)',
     type: Reservation,
   })
-  async findAllByRoom(@Param('roomId') roomId: number, @Query() query) {
+  async findAllByRoom(
+    @Param('roomId') roomId: number,
+    @Query() query,
+  ): Promise<any> {
     const { page, perPage, date } = query;
     if (page === null || page === undefined || !page) {
       console.log('not page');
@@ -170,7 +173,7 @@ export class ReservationsController {
     description: '특정 예약 조회 성공',
     type: Reservation,
   })
-  async findOne(@Param('id') id: number) {
+  async findOne(@Param('id') id: number): Promise<any> {
     const reservation = await this.reservationsService.findOne(id);
     return {
       status: 200,
@@ -197,7 +200,7 @@ export class ReservationsController {
     name: 'Authorization',
     description: 'Auth token',
   })
-  async findMyReservation(@GetUser() user: User, @Query() query) {
+  async findMyReservation(@GetUser() user: User, @Query() query): Promise<any> {
     const { page, perPage } = query;
     const startIndex: number = Number(perPage) * (Number(page) - 1);
     const reservations = await this.reservationsService.findMyReservation(
@@ -234,7 +237,7 @@ export class ReservationsController {
     @Param('id') id: number,
     @Body() updateReservationDto: UpdateReservationDto,
     @GetUser() user: User,
-  ) {
+  ): Promise<any> {
     const reservation = await this.reservationsService.findOne(id);
     if (reservation.user.id !== user.id) {
       throw new UnauthorizedException('권한 없음');
@@ -264,7 +267,10 @@ export class ReservationsController {
     name: 'authorization',
     description: 'Auth token',
   })
-  async deleteReservation(@Param('id') id: number, @GetUser() user: User) {
+  async deleteReservation(
+    @Param('id') id: number,
+    @GetUser() user: User,
+  ): Promise<any> {
     const reservation = await this.reservationsService.findOne(id);
     if (reservation.user.id !== user.id) {
       throw new UnauthorizedException('권한 없음');
@@ -289,7 +295,7 @@ export class ReservationsController {
     name: 'authorization',
     description: 'Auth token',
   })
-  async deleteMyReservation(@Param('id') id: number) {
+  async deleteMyReservation(@Param('id') id: number): Promise<any> {
     const removeReservation = await this.reservationsService.remove(id);
     return {
       status: 200,
