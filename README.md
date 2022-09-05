@@ -93,7 +93,7 @@ https://www.youtube.com/watch?v=al_ei550YEs
 | 나해란 | 프론트엔드 | 홈, 공간 목록, 공지사항                                                                                                          |
 | 남연진 | 프론트엔드 | 로그인, 로그아웃, 회원가입, 마이페이지, 리뷰, Q&A                                                                                |
 | 김태훈 | 백엔드     | EC2 MySQL 서버 생성 및 관리, 관계형 DB 모델링 및 ERD 작성, REST API 개발 및 Swagger 문서 작성, 인증/인가 구현, Slack Git 연동 등 |
-| 장종원 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| 백엔드 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;     | EC2 Jenkins(CI&CD), DB 구축 및 REST API 개발, API Document(Swagger), AWS S3(lambda)                                              |
+| 장종원 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| 백엔드 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;     | EC2 Jenkins(CI&CD), DB 구축 및 REST API 개발, API Document(Swagger), <br>AWS S3, lambda                                              |
 
 ### 5. 기술 스택
 
