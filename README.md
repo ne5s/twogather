@@ -7,7 +7,9 @@
 
 ### 서비스 링크
 
-http://34.64.86.202/
+~~http://34.64.86.202/~~
+
+※ 현재 배포 서버가 기간만료로 회수되어 접속은 불가능한 상태입니다.
 
 ### 서비스 시연 영상
 
@@ -91,7 +93,7 @@ https://www.youtube.com/watch?v=al_ei550YEs
 | 나해란 | 프론트엔드 | 홈, 공간 목록, 공지사항                                                                                                          |
 | 남연진 | 프론트엔드 | 로그인, 로그아웃, 회원가입, 마이페이지, 리뷰, Q&A                                                                                |
 | 김태훈 | 백엔드     | EC2 MySQL 서버 생성 및 관리, 관계형 DB 모델링 및 ERD 작성, REST API 개발 및 Swagger 문서 작성, 인증/인가 구현, Slack Git 연동 등 |
-| 장종원 &nbsp;&nbsp;| 백엔드 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;     | EC2 Jenkins(CI&CD), DB 구축 및 REST API 개발, API Document(Swagger), AWS S3(lambda)                                              |
+| 장종원 &nbsp;&nbsp;&nbsp;| 백엔드 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;     | EC2 Jenkins(CI&CD), DB 구축 및 REST API 개발, API Document(Swagger), AWS S3(lambda)                                              |
 
 ### 5. 기술 스택
 
@@ -117,7 +119,7 @@ https://www.youtube.com/watch?v=al_ei550YEs
   <img src="https://user-images.githubusercontent.com/73158122/182605691-a9bac9f0-9a68-4e9c-bc3a-53ee19bda423.png" width="60%">
 
 - Figma    
-  링크 : https://www.figma.com/file/11R0lkBAQmi4Pv2Js7fkUX/elice-project2?node-id=0%3A1
+  - 링크 : https://www.figma.com/file/11R0lkBAQmi4Pv2Js7fkUX/elice-project2?node-id=0%3A1
   <img width="1187" alt="figma" src="https://user-images.githubusercontent.com/73158122/182605839-ebb468b9-ef27-4947-a31b-047fb06ec267.png">
 
 ### 7. 페이지별 화면
